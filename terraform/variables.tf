@@ -27,3 +27,7 @@ variable "zone_name" {
     default = "nariops.online"
   
 }
+
+variable "app_version" {
+  
+}

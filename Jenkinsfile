@@ -11,7 +11,7 @@ pipeline {
 
     }
     parameters {
-        string(name: 'version', defaultValue: '10.0.0', description: 'What is the artifact version?')
+        string(name: 'version', defaultValue: '', description: 'What is the artifact version?')
 
         string(name: 'environment', defaultValue: 'dev', description: 'What is the environment?')
    
@@ -22,7 +22,7 @@ pipeline {
         nexusURL="172.31.10.115:8081"
     }
     stages {
-        stage('Print') {
+        stage('Print variables') {
             steps {
                 sh """ 
                 echo "version ${params.version}"
@@ -32,7 +32,17 @@ pipeline {
                 }
             }
         }
-    
+
+        stage('Terraform Init') {
+            steps {
+                sh """ 
+                cd terraform 
+                terraform init --backend-config= ${params.environment}/backend.tf -reconfigure 
+                """
+
+                }
+            }
+        }    
 
     post { 
         always { 
