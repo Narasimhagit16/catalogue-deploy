@@ -25,8 +25,8 @@ pipeline {
         stage('Print') {
             steps {
                 sh """ 
-                echo "version ${param.version}"
-                echo "environment ${param.environment}"
+                echo "version ${params.version}"
+                echo "environment ${params.environment}"
                 """
 
                 }
