@@ -50,7 +50,16 @@ pipeline {
                 """
 
                 }
-            }            
+            } 
+        stage('Terraform apply') {
+            steps {
+                sh """ 
+                cd terraform 
+                terraform plan --var-file=${params.environment}/${params.environment}.tfvars -var="app_vesrion=${params.version}" -auto-approve
+                """
+
+                }
+            }             
 
     }
     post { 
