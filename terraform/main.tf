@@ -16,5 +16,6 @@ module catalogue{
   
   common_tags = var.common_tags
   app_version=var.app_version
+  iam_instance_profile=var.iam_instance_profile
   
 }
